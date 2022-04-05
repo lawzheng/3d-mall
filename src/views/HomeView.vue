@@ -1,15 +1,23 @@
 <template>
-  <div class="home">
-    {{ store.count }}
-    <button @click="store.count++">++</button>
-    <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
-    <a-button>111111111</a-button>
-  </div>
+  <suspense>
+    <template #fallback>
+      <Loading/>
+    </template>
+    <template #default>
+      <HomeAsync/>
+    </template>
+  </suspense>
 </template>
 
 <script lang="ts" setup>
-import { counter } from '../store/index'
-import HelloWorld from '../components/HelloWorld.vue'
+import { onMounted, defineAsyncComponent } from 'vue'
+import Loading from '../components/Loading.vue'
 
-const store = counter()
+const HomeAsync = defineAsyncComponent(() => 
+  import('../components/HomeCom.vue')
+)
+
+onMounted(async () => {
+  
+})
 </script>
