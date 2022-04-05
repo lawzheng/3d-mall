@@ -3,6 +3,7 @@
     {{ store.count }}
     <button @click="store.count++">++</button>
     <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+    <a-button>111111111</a-button>
   </div>
 </template>
 
