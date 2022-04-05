@@ -1,15 +1,14 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
+    {{ store.count }}
+    <button @click="store.count++">++</button>
+    <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script lang="ts" setup>
+import { counter } from '../store/index'
+import HelloWorld from '../components/HelloWorld.vue'
 
-export default defineComponent({
-  name: 'HomeView',
-  components: {
-  }
-})
+const store = counter()
 </script>
