@@ -5,6 +5,7 @@
 declare module 'vue' {
   export interface GlobalComponents {
     AButton: typeof import('ant-design-vue/es')['Button']
+    ACarousel: typeof import('ant-design-vue/es')['Carousel']
     AInputSearch: typeof import('ant-design-vue/es')['InputSearch']
     AMenu: typeof import('ant-design-vue/es')['Menu']
     AMenuItem: typeof import('ant-design-vue/es')['MenuItem']
@@ -13,6 +14,7 @@ declare module 'vue' {
     Header: typeof import('./src/components/Header.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     HomeCom: typeof import('./src/components/HomeCom.vue')['default']
+    HomeSwiper: typeof import('./src/components/Home/HomeSwiper.vue')['default']
     Loading: typeof import('./src/components/Loading.vue')['default']
   }
 }

@@ -1,6 +1,6 @@
 import { request } from './index'
 
-interface Banner {
+export interface Banner {
   bg_color: string;
   end_time: string;
   gender: number;
@@ -17,8 +17,10 @@ interface Banner {
   sub_title: string;
   text_color: string;
   title: string;
+  desktop_title?: string;
   type: string;
   _id: string;
+  desktop_sub_title?: string
 }
 
 interface Hero {
