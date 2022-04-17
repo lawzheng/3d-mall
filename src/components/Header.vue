@@ -1,8 +1,14 @@
 <template>
- <!-- :class="{ hidden: store.state.isFullscreen }" -->
   <div class="header">
-    <div class="logo" @click="router.push('/')">
-      <img src="../assets/img/logo_rect.jpg" alt="logo" />
+    <!-- :class="{ hidden: store.state.isFullscreen }" -->
+    <div
+      class="logo"
+      @click="router.push('/')"
+    >
+      <img
+        src="../assets/img/logo_rect.jpg"
+        alt="logo"
+      >
     </div>
     <a-input-search
       v-model:value="data.value"
@@ -10,7 +16,10 @@
       class="input-search"
       @search="onSearch"
     />
-    <a-menu v-model:selectedKeys="data.current" mode="horizontal">
+    <a-menu
+      v-model:selectedKeys="data.current"
+      mode="horizontal"
+    >
       <a-menu-item key="help">
         <template #icon>
           <question-circle-outlined />
@@ -27,13 +36,17 @@
         <template #icon>
           <UserOutlined />
         </template>
-        <template #title>账户</template>
+        <template #title>
+          账户
+        </template>
       </a-sub-menu>
       <a-sub-menu key="buycart">
         <template #icon>
           <CarOutlined />
         </template>
-        <template #title>购物车</template>
+        <template #title>
+          购物车
+        </template>
         <a-menu-item-group title="购物商品">
           <!-- <a-menu-item v-for="(item, i) in store.state.buycarts" :key="item.id">
             <div class="prod-item">
@@ -91,7 +104,9 @@ const data = reactive({
   value: "",
   current: ["help"],
 });
-const onSearch = () => {};
+const onSearch = () => {
+  console.log(1)
+};
 </script>
 
 <style lang="less" scoped>

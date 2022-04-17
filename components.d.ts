@@ -16,6 +16,7 @@ declare module 'vue' {
     HomeCom: typeof import('./src/components/HomeCom.vue')['default']
     HomeSwiper: typeof import('./src/components/Home/HomeSwiper.vue')['default']
     Loading: typeof import('./src/components/Loading.vue')['default']
+    LoadingBox: typeof import('./src/components/LoadingBox.vue')['default']
   }
 }
 

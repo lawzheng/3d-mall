@@ -1,23 +1,22 @@
 <template>
   <suspense>
     <template #fallback>
-      <Loading/>
+      <LoadingBox />
     </template>
     <template #default>
-      <HomeAsync/>
+      <HomeAsync />
     </template>
   </suspense>
 </template>
 
 <script lang="ts" setup>
 import { onMounted, defineAsyncComponent } from 'vue'
-import Loading from '../components/Loading.vue'
+import LoadingBox from '../components/LoadingBox.vue'
 
 const HomeAsync = defineAsyncComponent(() => 
   import('../components/HomeCom.vue')
 )
 
-onMounted(async () => {
-  
-})
+// onMounted(async () => {
+// })
 </script>

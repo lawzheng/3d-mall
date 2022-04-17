@@ -1,18 +1,35 @@
 <template>
   <div class="homeswiper">
-    <div class="swiperBg" :style="{ backgroundColor: data.bgColor }"></div>
-    <a-carousel arrows autoplay :beforeChange="changeFn">
+    <div
+      class="swiperBg"
+      :style="{ backgroundColor: data.bgColor }"
+    />
+    <a-carousel
+      arrows
+      autoplay
+      :before-change="changeFn"
+    >
       <template #prevArrow>
-        <div class="custom-slick-arrow" style="left: 10px; z-index: 1">
+        <div
+          class="custom-slick-arrow"
+          style="left: 10px; z-index: 1"
+        >
           <left-circle-outlined />
         </div>
       </template>
       <template #nextArrow>
-        <div class="custom-slick-arrow" style="right: 10px">
+        <div
+          class="custom-slick-arrow"
+          style="right: 10px"
+        >
           <right-circle-outlined />
         </div>
       </template>
-      <div class="swiper-item" v-for="(item, i) in props.banner">
+      <div
+        v-for="(item, index) in props.banner"
+        :key="index"
+        class="swiper-item"
+      >
         <div class="swiper-box">
           <div class="swiper-left">
             <h3 :style="{ color: item.text_color }">
@@ -26,7 +43,7 @@
             <img
               :src="`https://pixl.decathlon.com.cn/${item.picture_desktop}/banner.jpg`"
               :alt="item.title"
-            />
+            >
           </div>
         </div>
       </div>

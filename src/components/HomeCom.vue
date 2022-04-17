@@ -1,28 +1,35 @@
 <template>
-<div class="homepage">
-  <HomeSwiper :banner="data.banner"></HomeSwiper>
-  <div class="live">
-    <h1>乐享生活100+</h1>
-    <div class="live-list">
+  <div class="homepage">
+    <HomeSwiper :banner="data.banner" />
+    <div class="live">
+      <h1>乐享生活100+</h1>
       <div
-        class="live-item"
-        v-for="index in 10"
         v-if="data.sports.length !== 0"
+        class="live-list"
       >
-        <div class="live-btn">
-          <img
-            :src="data.sports[index].menuThumbnail"
-            :alt="data.sports[index].displayName"
-          />
-          <h3>{{ data.sports[index].displayName }}</h3>
+        <div
+          v-for="index in 10"
+          :key="index"
+          class="live-item"
+        >
+          <div class="live-btn">
+            <img
+              :src="data.sports[index].menuThumbnail"
+              :alt="data.sports[index].displayName"
+            >
+            <h3>{{ data.sports[index].displayName }}</h3>
+          </div>
         </div>
       </div>
+      <a-button
+        type="primary"
+        size="large"
+        @click="router.push('/product')"
+      >
+        立即享受生活
+      </a-button>
     </div>
-    <a-button type="primary" size="large" @click="router.push('/product')">
-      立即享受生活
-    </a-button>
   </div>
-</div>
 </template>
 
 <script setup lang="ts">
