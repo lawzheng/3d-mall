@@ -2,35 +2,30 @@
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
-    style="margin:auto;background:#fff;display:block;position: fixed;top: 50%;left: 50%;transform: translate(-50%, -50%);"
+    style="
+      margin: auto;
+      background: #fff;
+      display: block;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    "
     width="200px"
     height="200px"
     viewBox="0 0 100 100"
     preserveAspectRatio="xMidYMid"
   >
     <defs>
-      <clipPath
-        id="ldio-31pouxfu4lt-cp"
-        x="0"
-        y="0"
-        width="100"
-        height="100"
-      >
-        <rect
-          x="0"
-          y="5"
-          width="100"
-          height="46"
-        /></clipPath>
+      <clipPath id="ldio-31pouxfu4lt-cp" x="0" y="0" width="100" height="100">
+        <rect x="0" y="5" width="100" height="46" />
+      </clipPath>
     </defs>
     <path
       d="M70 75.2H34.1l-4.1-18.4l-0.7-3l-1-4.7c0 0 0 0 0-0.1c0-0.1 0-0.1-0.1-0.2c0 0 0-0.1-0.1-0.1c0 0 0-0.1-0.1-0.1 c0 0-0.1-0.1-0.1-0.1c0 0-0.1-0.1-0.1-0.1c0 0-0.1-0.1-0.1-0.1c0 0 0 0-0.1-0.1L22.3 44c0-0.1 0-0.2 0-0.3c0-1.9-1.6-3.5-3.5-3.5 s-3.5 1.6-3.5 3.5c0 1.9 1.6 3.5 3.5 3.5c0.7 0 1.4-0.2 2-0.6l4.8 3.7L31.5 77c0 0 0 0 0 0l-5.6 7.7c-0.3 0.5-0.4 1.1-0.1 1.6 c0.3 0.5 0.8 0.8 1.3 0.8h4c-0.8 0.8-1.3 1.9-1.3 3.2c0 2.6 2.1 4.7 4.7 4.7c2.6 0 4.7-2.1 4.7-4.7c0-1.2-0.5-2.3-1.3-3.2h29 c-0.8 0.8-1.3 1.9-1.3 3.2c0 2.6 2.1 4.7 4.7 4.7c2.6 0 4.7-2.1 4.7-4.7c0-1.2-0.5-2.3-1.3-3.2H77c0.8 0 1.5-0.7 1.5-1.5 s-0.7-1.5-1.5-1.5H30l4.3-6h36.8c0.7 0 1.3-0.5 1.4-1.1l7.5-27.3c0.2-0.8-0.2-1.6-1-1.8c-0.8-0.2-1.6 0.2-1.8 1l-1.3 4.7l-0.8 3"
       fill="#dddddd"
     />
-    <polygon
-      points="31.3 53.1 35.7 73.2 68.5 73.2 74 53.1"
-      fill="#dddddd"
-    />
+    <polygon points="31.3 53.1 35.7 73.2 68.5 73.2 74 53.1" fill="#dddddd" />
     <g clip-path="url(#ldio-31pouxfu4lt-cp)">
       <g>
         <g transform="translate(50 41)">

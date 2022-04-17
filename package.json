@@ -6,7 +6,8 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --fix"
+    "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --fix",
+    "format": "prettier --write ./**/*.{vue,ts,tsx,js,jsx,css,less,scss,json,md}"
   },
   "dependencies": {
     "ant-design-vue": "^2.2.8",
@@ -20,8 +21,11 @@
     "@typescript-eslint/parser": "^5.19.0",
     "@vitejs/plugin-vue": "^2.3.0",
     "eslint": "^8.13.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.6.0",
     "less": "^4.1.2",
+    "prettier": "^2.6.2",
     "typescript": "^4.5.4",
     "unplugin-vue-components": "^0.18.5",
     "vite": "^2.9.0",

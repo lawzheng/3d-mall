@@ -1,14 +1,8 @@
 <template>
   <div class="header">
     <!-- :class="{ hidden: store.state.isFullscreen }" -->
-    <div
-      class="logo"
-      @click="router.push('/')"
-    >
-      <img
-        src="../assets/img/logo_rect.jpg"
-        alt="logo"
-      >
+    <div class="logo" @click="router.push('/')">
+      <img src="../assets/img/logo_rect.jpg" alt="logo" />
     </div>
     <a-input-search
       v-model:value="data.value"
@@ -16,10 +10,7 @@
       class="input-search"
       @search="onSearch"
     />
-    <a-menu
-      v-model:selectedKeys="data.current"
-      mode="horizontal"
-    >
+    <a-menu v-model:selectedKeys="data.current" mode="horizontal">
       <a-menu-item key="help">
         <template #icon>
           <question-circle-outlined />
@@ -36,17 +27,13 @@
         <template #icon>
           <UserOutlined />
         </template>
-        <template #title>
-          账户
-        </template>
+        <template #title> 账户 </template>
       </a-sub-menu>
       <a-sub-menu key="buycart">
         <template #icon>
           <CarOutlined />
         </template>
-        <template #title>
-          购物车
-        </template>
+        <template #title> 购物车 </template>
         <a-menu-item-group title="购物商品">
           <!-- <a-menu-item v-for="(item, i) in store.state.buycarts" :key="item.id">
             <div class="prod-item">
@@ -89,24 +76,24 @@
 </template>
 
 <script setup lang="ts">
-import { useRoute, useRouter } from "vue-router";
+import { useRoute, useRouter } from 'vue-router'
 // import { useStore } from "vuex";
-import { reactive } from "vue";
+import { reactive } from 'vue'
 import {
   ShopOutlined,
   UserOutlined,
   CarOutlined,
   QuestionCircleOutlined,
-} from "@ant-design/icons-vue";
+} from '@ant-design/icons-vue'
 // const store = useStore();
-const router = useRouter();
+const router = useRouter()
 const data = reactive({
-  value: "",
-  current: ["help"],
-});
+  value: '',
+  current: ['help'],
+})
 const onSearch = () => {
   console.log(1)
-};
+}
 </script>
 
 <style lang="less" scoped>

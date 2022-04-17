@@ -3,29 +3,18 @@
     <HomeSwiper :banner="data.banner" />
     <div class="live">
       <h1>乐享生活100+</h1>
-      <div
-        v-if="data.sports.length !== 0"
-        class="live-list"
-      >
-        <div
-          v-for="index in 10"
-          :key="index"
-          class="live-item"
-        >
+      <div v-if="data.sports.length !== 0" class="live-list">
+        <div v-for="index in 10" :key="index" class="live-item">
           <div class="live-btn">
             <img
               :src="data.sports[index].menuThumbnail"
               :alt="data.sports[index].displayName"
-            >
+            />
             <h3>{{ data.sports[index].displayName }}</h3>
           </div>
         </div>
       </div>
-      <a-button
-        type="primary"
-        size="large"
-        @click="router.push('/product')"
-      >
+      <a-button type="primary" size="large" @click="router.push('/product')">
         立即享受生活
       </a-button>
     </div>
@@ -42,7 +31,6 @@ const data = await api.getHomePage()
 const router = useRouter()
 
 const hero = reactive(data.hero)
-
 </script>
 
 <style lang="less" scoped>

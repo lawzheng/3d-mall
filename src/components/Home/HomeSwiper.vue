@@ -1,27 +1,14 @@
 <template>
   <div class="homeswiper">
-    <div
-      class="swiperBg"
-      :style="{ backgroundColor: data.bgColor }"
-    />
-    <a-carousel
-      arrows
-      autoplay
-      :before-change="changeFn"
-    >
+    <div class="swiperBg" :style="{ backgroundColor: data.bgColor }" />
+    <a-carousel arrows autoplay :before-change="changeFn">
       <template #prevArrow>
-        <div
-          class="custom-slick-arrow"
-          style="left: 10px; z-index: 1"
-        >
+        <div class="custom-slick-arrow" style="left: 10px; z-index: 1">
           <left-circle-outlined />
         </div>
       </template>
       <template #nextArrow>
-        <div
-          class="custom-slick-arrow"
-          style="right: 10px"
-        >
+        <div class="custom-slick-arrow" style="right: 10px">
           <right-circle-outlined />
         </div>
       </template>
@@ -43,7 +30,7 @@
             <img
               :src="`https://pixl.decathlon.com.cn/${item.picture_desktop}/banner.jpg`"
               :alt="item.title"
-            >
+            />
           </div>
         </div>
       </div>
@@ -52,22 +39,22 @@
 </template>
 
 <script setup lang="ts">
-import { LeftCircleOutlined, RightCircleOutlined } from "@ant-design/icons-vue";
-import { reactive } from "vue";
+import { LeftCircleOutlined, RightCircleOutlined } from '@ant-design/icons-vue'
+import { reactive } from 'vue'
 import { Banner } from '../../api/home'
 
 const props = defineProps<{
   banner: Array<Banner>
-}>();
+}>()
 
 const data = reactive({
   bgColor: props.banner[0].bg_color,
-});
+})
 
-console.log(props);
+console.log(props)
 
 function changeFn(from: undefined, to: number) {
-  data.bgColor = props.banner[to].bg_color;
+  data.bgColor = props.banner[to].bg_color
 }
 </script>
 

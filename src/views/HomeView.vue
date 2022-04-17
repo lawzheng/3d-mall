@@ -13,8 +13,8 @@
 import { onMounted, defineAsyncComponent } from 'vue'
 import LoadingBox from '../components/LoadingBox.vue'
 
-const HomeAsync = defineAsyncComponent(() => 
-  import('../components/HomeCom.vue')
+const HomeAsync = defineAsyncComponent(
+  () => import('../components/HomeCom.vue')
 )
 
 // onMounted(async () => {

@@ -5,5 +5,5 @@ export const counter = defineStore('counter', {
     return {
       count: 0,
     }
-  }
+  },
 })
