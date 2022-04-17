@@ -35,9 +35,18 @@ interface Hero {
   text: string;
 }
 
+interface Sports {
+  categoryLink: string;
+  // childCategories: ;
+  displayName: string;
+  menuThumbnail: string;
+  priority: number;
+}
+
 export interface HomeData {
   banner: Array<Banner>,
-  hero: Array<Hero>
+  hero: Array<Hero>,
+  sports: Array<Sports>
 }
 
 export const getHomePage = (params?: any) => {

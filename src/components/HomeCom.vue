@@ -1,14 +1,38 @@
 <template>
 <div class="homepage">
   <HomeSwiper :banner="data.banner"></HomeSwiper>
+  <div class="live">
+    <h1>乐享生活100+</h1>
+    <div class="live-list">
+      <div
+        class="live-item"
+        v-for="index in 10"
+        v-if="data.sports.length !== 0"
+      >
+        <div class="live-btn">
+          <img
+            :src="data.sports[index].menuThumbnail"
+            :alt="data.sports[index].displayName"
+          />
+          <h3>{{ data.sports[index].displayName }}</h3>
+        </div>
+      </div>
+    </div>
+    <a-button type="primary" size="large" @click="router.push('/product')">
+      立即享受生活
+    </a-button>
+  </div>
 </div>
 </template>
 
 <script setup lang="ts">
 import { reactive } from 'vue'
+import { useRouter } from 'vue-router'
+
 import * as api from '../api/home'
 import HomeSwiper from './Home/HomeSwiper.vue'
-const data = await api.getHomePage();
+const data = await api.getHomePage()
+const router = useRouter()
 
 const hero = reactive(data.hero)
 
