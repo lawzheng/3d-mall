@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="header" :class="{ hidden: store.isFullscreen }">
     <!-- :class="{ hidden: store.state.isFullscreen }" -->
     <div class="logo" @click="router.push('/')">
       <img src="../assets/img/logo_rect.jpg" alt="logo" />
@@ -77,6 +77,7 @@
 
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router'
+import { useStore } from '../store/index'
 // import { useStore } from "vuex";
 import { reactive } from 'vue'
 import {
@@ -85,7 +86,7 @@ import {
   CarOutlined,
   QuestionCircleOutlined,
 } from '@ant-design/icons-vue'
-// const store = useStore();
+const store = useStore()
 const router = useRouter()
 const data = reactive({
   value: '',
