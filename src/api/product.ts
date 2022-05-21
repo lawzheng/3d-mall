@@ -5,7 +5,7 @@ interface Desc {
   title: string
 }
 
-interface ProductsListItem {
+export interface ProductsListItem {
   id: number
   imgsrc: string
   modelName: string
@@ -16,8 +16,9 @@ interface ProductsListItem {
 }
 
 interface Products {
+  isLoading: boolean
   list: Array<ProductsListItem>
-  hdr: Array<number>
+  hdr: Array<string>
 }
 
 export const getProducts = () => {

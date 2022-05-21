@@ -33,9 +33,9 @@
         <template #icon>
           <CarOutlined />
         </template>
-        <template #title> 购物车 </template>
+        <template #title>购物车</template>
         <a-menu-item-group title="购物商品">
-          <!-- <a-menu-item v-for="(item, i) in store.state.buycarts" :key="item.id">
+          <a-menu-item v-for="(item, i) in store.buyCarts" :key="item.id">
             <div class="prod-item">
               <div class="left">
                 <img :src="item.imgsrc" :alt="item.title" />
@@ -45,14 +45,10 @@
                 <div class="content">
                   <span class="num">数量：{{ item.num }}</span>
                   <div class="control">
-                    <span
-                      class="btn"
-                      @click.stop="store.commit('addBuycartsNum', i)"
+                    <span class="btn" @click.stop="store.addBuyCartsNum(i)"
                       >+</span
                     >
-                    <span
-                      class="btn"
-                      @click.stop="store.commit('minusBuycartsNum', i)"
+                    <span class="btn" @click.stop="store.minusBuycartsNum(i)"
                       >-</span
                     >
                   </div>
@@ -62,11 +58,11 @@
                 <div class="price">¥ {{ item.price * item.num }}</div>
               </div>
             </div>
-          </a-menu-item> -->
+          </a-menu-item>
           <a-menu-item key="totalPrice">
             <div class="total">
               <span>总价：</span>
-              <!-- <span class="num"> ¥ {{ store.getters.totalPrice }}</span> -->
+              <span class="num"> ¥ {{ store.totalPrice }}</span>
             </div>
           </a-menu-item>
         </a-menu-item-group>

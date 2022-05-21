@@ -5,15 +5,37 @@
   <div v-show="!data.isLoading" id="product" class="product">
     <div class="prod-list" :class="{ hidden: store.isFullscreen }">
       <h1><SketchOutlined></SketchOutlined>产品推荐</h1>
-      <div class="products"></div>
+      <div class="products">
+        <div
+          v-for="(prod, pI) in data.products"
+          :key="pI"
+          :class="{ active: pI == data.pIndex }"
+          class="prod-item"
+          @click="changeModel(prod, pI)"
+        >
+          <div class="prod-title">
+            {{ prod.title }}
+          </div>
+          <div class="img">
+            <img :src="prod.imgsrc" :alt="prod.title" />
+          </div>
+          <a-button type="primary" block @click.stop="addBuycart(prod)">
+            <template #icon>
+              <ShoppingCartOutlined></ShoppingCartOutlined>
+            </template>
+            加入购物车
+          </a-button>
+        </div>
+      </div>
     </div>
     <div class="scene-list" :class="{ hidden: store.isFullscreen }">
       <h3><RadarChartOutlined></RadarChartOutlined> 切换使用场景</h3>
 
-      <!-- <div class="scenes">
+      <div class="scenes">
         <div
-          class="scene-item"
           v-for="(scene, index) in data.scenes"
+          :key="index"
+          class="scene-item"
           @click="changeHdr(scene, index)"
         >
           <img
@@ -21,8 +43,8 @@
             :src="`./files/hdr/${scene}.jpg`"
             :alt="scene"
           />
-        </div> -->
-      <!-- </div> -->
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -31,7 +53,7 @@
 import { onMounted, reactive } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStore } from '../store/index'
-import { getProducts } from '../api/product'
+import { getProducts, ProductsListItem } from '../api/product'
 import LoadingBoxVue from '../components/LoadingBox.vue'
 import {
   SketchOutlined,
@@ -42,15 +64,55 @@ import {
 const route = useRoute()
 const store = useStore()
 
-const data = reactive({
+interface Data {
+  products: Array<ProductsListItem>
+  isLoading: boolean
+  scenes: Array<string>
+  pIndex: number
+  sceneIndex: number
+  base3d: any
+}
+
+const data: Data = reactive({
   products: [],
   isLoading: true,
+  scenes: [],
+  pIndex: 0,
+  sceneIndex: 0,
+  base3d: '',
 })
 
+function changeModel(prod: ProductsListItem, pI: number) {
+  data.pIndex = pI
+  data.base3d.setModel(prod.modelName)
+}
+function changeHdr(scene: string, index: number) {
+  data.sceneIndex = index
+  data.base3d.setEnvMap(scene)
+}
+function addBuycart(prod: ProductsListItem) {
+  let product = { ...prod, num: 1 }
+  let index = 0
+  let isExist = store.buyCarts.some((item: ProductsListItem, i) => {
+    if (product.id == item.id) {
+      index = i
+      return true
+    } else {
+      return false
+    }
+  })
+  if (isExist) {
+    store.addBuyCartsNum(index)
+  } else {
+    store.addBuyCarts(product)
+  }
+}
 onMounted(async () => {
   let result = await getProducts()
   console.log(result)
   data.isLoading = false
+  data.products = result.list
+  data.scenes = result.hdr
 
   window.addEventListener('mousewheel', (e) => {
     const deltaY = (e as WheelEvent).deltaY
