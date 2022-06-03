@@ -51,7 +51,7 @@
 
 <script setup lang="ts">
 import { onMounted, reactive } from 'vue'
-import { useRoute } from 'vue-router'
+// import { useRoute } from 'vue-router'
 import { useStore } from '../store/index'
 import { getProducts, ProductsListItem } from '../api/product'
 import LoadingBoxVue from '../components/LoadingBox.vue'
@@ -60,8 +60,9 @@ import {
   RadarChartOutlined,
   ShoppingCartOutlined,
 } from '@ant-design/icons-vue'
+import Base3d from '../utils/Base3d'
 
-const route = useRoute()
+// const route = useRoute()
 const store = useStore()
 
 interface Data {
@@ -71,6 +72,7 @@ interface Data {
   pIndex: number
   sceneIndex: number
   base3d: any
+  progress: number
 }
 
 const data: Data = reactive({
@@ -80,6 +82,7 @@ const data: Data = reactive({
   pIndex: 0,
   sceneIndex: 0,
   base3d: '',
+  progress: 0,
 })
 
 function changeModel(prod: ProductsListItem, pI: number) {
@@ -107,12 +110,20 @@ function addBuycart(prod: ProductsListItem) {
     store.addBuyCarts(product)
   }
 }
+function LoadingFinish() {
+  data.isLoading = false
+}
 onMounted(async () => {
   let result = await getProducts()
   console.log(result)
   data.isLoading = false
   data.products = result.list
   data.scenes = result.hdr
+  data.base3d = new Base3d('#product', LoadingFinish)
+  data.base3d.onProgress((e: ProgressEvent) => {
+    data.progress = +(e.loaded / e.total).toFixed(2) * 100
+    // console.log(progressNum);
+  })
 
   window.addEventListener('mousewheel', (e) => {
     const deltaY = (e as WheelEvent).deltaY
