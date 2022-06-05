@@ -233,4 +233,23 @@
       </g>
     </g>
   </svg>
+  <h3>加载中：{{ progress }}%</h3>
 </template>
+<script setup lang="ts">
+defineProps({
+  progress: {
+    type: Number,
+    default: 0,
+  },
+})
+</script>
+
+<style scoped>
+h3 {
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  font-size: 30px;
+  font-weight: 900;
+}
+</style>

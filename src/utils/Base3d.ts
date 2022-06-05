@@ -30,14 +30,14 @@ declare global {
 }
 
 class Base3d {
-  public container: HTMLElement
+  public container!: HTMLElement
   // 非空断言 !
   public camera!: THREE.PerspectiveCamera
   public scene!: THREE.Scene
   public renderer!: THREE.WebGLRenderer
   public model!: THREE.Object3D
   public panzi!: THREE.Object3D
-  public clock: THREE.Clock
+  public clock!: THREE.Clock
   public onFinish: FinishFn | undefined
   public progressFn!: ProgressFn
   public controls!: OrbitControls

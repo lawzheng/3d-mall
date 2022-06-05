@@ -1,6 +1,6 @@
 <template>
   <div v-show="data.isLoading" class="loading">
-    <LoadingBoxVue />
+    <LoadingBoxVue :progress="data.progress" />
   </div>
   <div v-show="!data.isLoading" id="product" class="product">
     <template v-if="data.products[data.pIndex]">
