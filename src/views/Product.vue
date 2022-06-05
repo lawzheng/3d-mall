@@ -3,6 +3,17 @@
     <LoadingBoxVue />
   </div>
   <div v-show="!data.isLoading" id="product" class="product">
+    <template v-if="data.products[data.pIndex]">
+      <div
+        v-for="(desc, i) in data.products[data.pIndex].desc"
+        :key="i"
+        class="desc"
+        :class="{ active: data.descIndex == i }"
+      >
+        <h1 class="title">{{ desc.title }}</h1>
+        <p class="content">{{ desc.content }}</p>
+      </div>
+    </template>
     <div class="prod-list" :class="{ hidden: store.isFullscreen }">
       <h1><SketchOutlined></SketchOutlined>产品推荐</h1>
       <div class="products">
@@ -50,7 +61,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, reactive } from 'vue'
+import { onMounted, reactive, onUnmounted } from 'vue'
 // import { useRoute } from 'vue-router'
 import { useStore } from '../store/index'
 import { getProducts, ProductsListItem } from '../api/product'
@@ -71,8 +82,9 @@ interface Data {
   scenes: Array<string>
   pIndex: number
   sceneIndex: number
-  base3d: any
+  base3d: Base3d
   progress: number
+  descIndex: number
 }
 
 const data: Data = reactive({
@@ -81,8 +93,9 @@ const data: Data = reactive({
   scenes: [],
   pIndex: 0,
   sceneIndex: 0,
-  base3d: '',
+  base3d: new Base3d('', undefined),
   progress: 0,
+  descIndex: 0,
 })
 
 function changeModel(prod: ProductsListItem, pI: number) {
@@ -113,10 +126,25 @@ function addBuycart(prod: ProductsListItem) {
 function LoadingFinish() {
   data.isLoading = false
 }
+
+function onMouseWheel(e: WheelEvent) {
+  const deltaY = e.deltaY
+  if (deltaY > 0) {
+    store.setFullscreen(true)
+  }
+  if (deltaY < 0) {
+    store.setFullscreen(false)
+  }
+
+  const duration = data.base3d.animateAction._clip.duration
+  const time = data.base3d.animateAction.time
+  const index = Math.floor((time / duration) * 4)
+  data.descIndex = index
+}
+
 onMounted(async () => {
   let result = await getProducts()
   console.log(result)
-  data.isLoading = false
   data.products = result.list
   data.scenes = result.hdr
   data.base3d = new Base3d('#product', LoadingFinish)
@@ -125,15 +153,11 @@ onMounted(async () => {
     // console.log(progressNum);
   })
 
-  window.addEventListener('mousewheel', (e) => {
-    const deltaY = (e as WheelEvent).deltaY
-    if (deltaY > 0) {
-      store.setFullscreen(true)
-    }
-    if (deltaY < 0) {
-      store.setFullscreen(false)
-    }
-  })
+  window.addEventListener('mousewheel', onMouseWheel)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('mousewheel', onMouseWheel)
 })
 </script>
 

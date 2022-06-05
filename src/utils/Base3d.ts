@@ -47,11 +47,13 @@ class Base3d {
   public animateAction!: THREE.AnimationAction
   public timeoutid!: number
   constructor(selector: string, onFinish?: FinishFn) {
-    this.container = document.querySelector(selector) as HTMLElement
-    this.clock = new THREE.Clock()
-    this.onFinish = onFinish
-    this.init()
-    this.animate()
+    if (selector) {
+      this.container = document.querySelector(selector) as HTMLElement
+      this.clock = new THREE.Clock()
+      this.onFinish = onFinish
+      this.init()
+      this.animate()
+    }
   }
   public onProgress(fn: ProgressFn) {
     this.progressFn = fn
@@ -121,7 +123,7 @@ class Base3d {
         modelName,
         (gltf) => {
           console.log(gltf)
-          // this.model && this.model.removeFromParent()
+          this.model && this.model.removeFromParent()
           this.model = gltf.scene.children[0]
           if ('bag2.glb' == modelName && !this.panzi) {
             this.panzi = gltf.scene.children[5]
